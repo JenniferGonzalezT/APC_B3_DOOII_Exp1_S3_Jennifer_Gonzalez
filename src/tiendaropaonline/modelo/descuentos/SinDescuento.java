@@ -5,13 +5,13 @@ package tiendaropaonline.modelo.descuentos;
  */
 
 public class SinDescuento extends Decorator {
-    public SinDescuento(Component componente) {
-        super(componente);
+    public SinDescuento(Component producto) {
+        super(producto);
     }
     
     @Override
-    public int getID() {
-        return super.getID();
+    public int getId() {
+        return super.getId();
     }
     
     @Override

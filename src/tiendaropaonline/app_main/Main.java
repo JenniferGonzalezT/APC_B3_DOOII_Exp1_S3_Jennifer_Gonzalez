@@ -6,7 +6,6 @@ import tiendaropaonline.controlador.ControladorCarrito;
 import tiendaropaonline.modelo.Producto;
 import tiendaropaonline.modelo.carrito.Carrito;
 import tiendaropaonline.modelo.descuentos.Component;
-import tiendaropaonline.modelo.descuentos.ProductoBase;
 import tiendaropaonline.vista.VistaCarrito;
 import tiendaropaonline.vista.VistaConsola;
 
@@ -26,9 +25,9 @@ public class Main {
         
         // Productos de prueba
         List<Component> productos = new ArrayList<>();
-        productos.add(new ProductoBase(new Producto(1, "Polera", 15000, "Ropa")));
-        productos.add(new ProductoBase(new Producto(2,"Jeans", 25000, "Ropa")));
-        productos.add(new ProductoBase(new Producto(3,"Zapatos", 30000, "Calzado")));
+        productos.add(new Producto(1, "Polera", 15000, "Ropa"));
+        productos.add(new Producto(2,"Jeans", 25000, "Ropa"));
+        productos.add(new Producto(3,"Zapatos", 30000, "Calzado"));
         
         // Carrito
         Carrito carrito = new Carrito();

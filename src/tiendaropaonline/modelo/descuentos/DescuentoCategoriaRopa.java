@@ -5,18 +5,18 @@ package tiendaropaonline.modelo.descuentos;
  */
 
 public class DescuentoCategoriaRopa extends Decorator {
-    public DescuentoCategoriaRopa(Component componente) {
-        super(componente);
+    public DescuentoCategoriaRopa(Component producto) {
+        super(producto);
     }
     
     @Override
-    public int getID() {
-        return super.getID();
+    public int getId() {
+        return super.getId();
     }
     
     @Override
     public double getPrecio() {
-        if (componente.getCategoria().equalsIgnoreCase("Ropa")) {
+        if (producto.getCategoria().equalsIgnoreCase("Ropa")) {
             return super.getPrecio() * 0.8;
         }
         return super.getPrecio();

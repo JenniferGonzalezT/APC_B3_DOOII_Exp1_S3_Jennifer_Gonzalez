@@ -7,7 +7,7 @@ public class VistaProducto {
         System.out.println("Producto: " + producto.getNombre() +
             "\n-> Precio: $" + producto.getPrecio() +
             "\n-> Categoría: " + producto.getCategoria() +
-            "\n-> ID: " + producto.getIdProducto()
+            "\n-> ID: " + producto.getId()
         );
     }
 }

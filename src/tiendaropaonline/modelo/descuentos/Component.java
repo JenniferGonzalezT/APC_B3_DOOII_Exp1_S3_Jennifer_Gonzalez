@@ -6,7 +6,7 @@ package tiendaropaonline.modelo.descuentos;
  */
 
 public interface Component {
-    int getID();
+    int getId();
     String getNombre();
     String getCategoria();
     double getPrecio();

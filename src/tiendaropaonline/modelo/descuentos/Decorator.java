@@ -5,34 +5,34 @@ package tiendaropaonline.modelo.descuentos;
  */
 
 public abstract class Decorator implements Component {
-    protected Component componente;
+    protected Component producto;
 
     public Decorator(Component componente) {
-        this.componente = componente;
+        this.producto = componente;
     }
     
     @Override
-    public int getID() {
-        return componente.getID();
+    public int getId() {
+        return producto.getId();
     }
     
     @Override
     public String getNombre() {
-        return componente.getNombre();
+        return producto.getNombre();
     }
     
     @Override
     public String getCategoria() {
-        return componente.getCategoria();
+        return producto.getCategoria();
     }
     
     @Override
     public double getPrecio() {
-        return componente.getPrecio();
+        return producto.getPrecio();
     }
     
     @Override
     public String getDescripcion() {
-        return componente.getDescripcion();
+        return producto.getDescripcion();
     }
 }

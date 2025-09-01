@@ -1,28 +1,31 @@
 package tiendaropaonline.modelo;
 
+import tiendaropaonline.modelo.descuentos.Component;
 import tiendaropaonline.util.FormatoMoneda;
 
-public class Producto {
-    private int idProducto;
+public class Producto implements Component {
+    private int id;
     private String nombre;
     private double precio;
     private String categoria;
 
-    public Producto(int idProducto, String nombre, double precio, String categoria) {
-        this.idProducto = idProducto;
+    public Producto(int id, String nombre, double precio, String categoria) {
+        this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.categoria = categoria;
     }
 
-    public int getIdProducto() {
-        return idProducto;
+    @Override
+    public int getId() {
+        return id;
     }
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+    public void setId(int id) {
+        this.id = id;
     }
 
+    @Override
     public String getNombre() {
         return nombre;
     }
@@ -31,6 +34,7 @@ public class Producto {
         this.nombre = nombre;
     }
 
+    @Override
     public double getPrecio() {
         return precio;
     }
@@ -39,6 +43,7 @@ public class Producto {
         this.precio = precio;
     }
 
+    @Override
     public String getCategoria() {
         return categoria;
     }
@@ -48,7 +53,7 @@ public class Producto {
     }
 
     @Override
-    public String toString() {
-        return "Producto " + idProducto + ": " + nombre + " " + FormatoMoneda.formatearCLP(precio) + "(" + categoria + ")";
+    public String getDescripcion() {
+        return "Producto " + id + ": " + nombre + " " + FormatoMoneda.formatearCLP(precio) + "(" + categoria + ")";
     }
 }
