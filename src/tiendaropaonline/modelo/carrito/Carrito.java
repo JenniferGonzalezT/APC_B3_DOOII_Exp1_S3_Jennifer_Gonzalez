@@ -1,0 +1,49 @@
+package tiendaropaonline.modelo.carrito;
+
+import java.util.ArrayList;
+import java.util.List;
+import tiendaropaonline.modelo.descuentos.Component;
+import tiendaropaonline.util.FormatoMoneda;
+
+/**
+ * Receptor del patrón Command para agregar, eliminar y mostrar en el carrito.
+ */
+
+public class Carrito {
+    private List<Component> productos;
+
+    public Carrito() {
+        this.productos = new ArrayList<>();
+    }
+    
+    public void agregarProducto(Component producto) {
+        productos.add(producto);
+    }
+    
+    public void eliminarProducto(Component producto) {
+        productos.remove(producto);
+    }
+    
+    public void mostrarProductos() {
+        for (Component producto : productos) {
+            System.out.println(" -> " + producto.getDescripcion() + " - Precio final " + FormatoMoneda.formatearCLP(producto.getPrecio()));
+        }
+    }
+    
+    public double calcularTotal() {
+        double total = 0;
+        for (Component producto : productos) {
+            total += producto.getPrecio();
+        }
+        return total;
+    }
+    
+    public List<Component> getProductos() {
+        return productos;
+    }
+
+    @Override
+    public String toString() {
+        return "Carrito: " + productos.size() + " productos\nTotal: " + FormatoMoneda.formatearCLP(calcularTotal());
+    }
+}
