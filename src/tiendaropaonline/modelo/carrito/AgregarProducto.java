@@ -7,8 +7,8 @@ import tiendaropaonline.modelo.descuentos.Component;
  */
 
 public class AgregarProducto implements Command {
-    private Carrito carrito;
-    private Component producto;
+    private final Carrito carrito;
+    private final Component producto;
 
     public AgregarProducto(Carrito carrito, Component producto) {
         this.carrito = carrito;
@@ -18,6 +18,5 @@ public class AgregarProducto implements Command {
     @Override
     public void ejecutar() {
         carrito.agregarProducto(producto);
-        System.out.println("Producto agregado al carrito: " + producto.getNombre());
     }
 }

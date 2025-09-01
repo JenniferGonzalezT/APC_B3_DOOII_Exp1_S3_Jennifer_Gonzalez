@@ -12,8 +12,8 @@ public abstract class Decorator implements Component {
     }
     
     @Override
-    public int getId() {
-        return producto.getId();
+    public int getIdProducto() {
+        return producto.getIdProducto();
     }
     
     @Override

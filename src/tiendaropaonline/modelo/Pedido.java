@@ -5,13 +5,13 @@ import java.util.List;
 import tiendaropaonline.util.FormatoMoneda;
 
 public class Pedido {
-    private int id_pedido;
+    private int idPedido;
     private Usuario usuario;
     private List<Producto> productos;
     private double total;
 
-    public Pedido(int id_pedido, Usuario usuario) {
-        this.id_pedido = id_pedido;
+    public Pedido(int idPedido, Usuario usuario) {
+        this.idPedido = idPedido;
         this.usuario = usuario;
         this.productos = new ArrayList<>();
         this.total = 0;
@@ -44,6 +44,6 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido #" + id_pedido + " a nombre de " + usuario.getNombre() + " - Total: $" + FormatoMoneda.formatearCLP(total);
+        return "Pedido #" + idPedido + " a nombre de " + usuario.getNombre() + " - Total: $" + FormatoMoneda.formatearCLP(total);
     }
 }

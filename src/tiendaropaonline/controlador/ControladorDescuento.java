@@ -4,8 +4,8 @@ import tiendaropaonline.modelo.descuentos.Component;
 import tiendaropaonline.vista.VistaDescuento;
 
 public class ControladorDescuento {
-    private Component producto;
-    private VistaDescuento vista;
+    private final Component producto;
+    private final VistaDescuento vista;
 
     public ControladorDescuento(Component producto, VistaDescuento vista) {
         this.producto = producto;

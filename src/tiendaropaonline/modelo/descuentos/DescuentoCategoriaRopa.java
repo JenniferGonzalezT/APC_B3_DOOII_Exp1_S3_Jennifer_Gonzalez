@@ -10,11 +10,6 @@ public class DescuentoCategoriaRopa extends Decorator {
     }
     
     @Override
-    public int getId() {
-        return super.getId();
-    }
-    
-    @Override
     public double getPrecio() {
         if (producto.getCategoria().equalsIgnoreCase("Ropa")) {
             return super.getPrecio() * 0.8;

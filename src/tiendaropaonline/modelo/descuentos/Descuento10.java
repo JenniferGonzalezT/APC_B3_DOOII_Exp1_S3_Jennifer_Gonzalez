@@ -10,11 +10,6 @@ public class Descuento10 extends Decorator {
     }
     
     @Override
-    public int getId() {
-        return super.getId();
-    }
-    
-    @Override
     public double getPrecio() {
         return super.getPrecio() * 0.9;
     }

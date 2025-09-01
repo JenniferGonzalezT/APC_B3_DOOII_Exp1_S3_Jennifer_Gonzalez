@@ -7,8 +7,8 @@ import tiendaropaonline.modelo.descuentos.Component;
  */
 
 public class EliminarProducto implements Command {
-    private Carrito carrito;
-    private Component producto;
+    private final Carrito carrito;
+    private final Component producto;
 
     public EliminarProducto(Carrito carrito, Component producto) {
         this.carrito = carrito;
@@ -18,6 +18,5 @@ public class EliminarProducto implements Command {
     @Override
     public void ejecutar() {
         carrito.eliminarProducto(producto);
-        System.out.println("Producto eliminado del carrito: " + producto.getNombre());
     }
 }

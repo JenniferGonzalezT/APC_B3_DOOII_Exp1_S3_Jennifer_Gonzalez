@@ -1,22 +1,22 @@
 package tiendaropaonline.modelo;
 
 public class Usuario {
-    private int id_usuario;
+    private int idUsuario;
     private String nombre;
     private String correo;
 
-    public Usuario(int id_usuario, String nombre, String correo) {
-        this.id_usuario = id_usuario;
+    public Usuario(int idUsuario, String nombre, String correo) {
+        this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.correo = correo;
     }
 
-    public int getId_usuario() {
-        return id_usuario;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNombre() {
@@ -37,6 +37,6 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario " + id_usuario + " -> Nombre: " + nombre + ", Correo: " + correo;
+        return "Usuario " + idUsuario + " -> Nombre: " + nombre + ", Correo: " + correo;
     }
 }

@@ -1,6 +1,7 @@
 package tiendaropaonline.modelo.carrito;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import tiendaropaonline.modelo.descuentos.Component;
 import tiendaropaonline.util.FormatoMoneda;
@@ -10,7 +11,7 @@ import tiendaropaonline.util.FormatoMoneda;
  */
 
 public class Carrito {
-    private List<Component> productos;
+    private final List<Component> productos;
 
     public Carrito() {
         this.productos = new ArrayList<>();
@@ -24,10 +25,8 @@ public class Carrito {
         productos.remove(producto);
     }
     
-    public void mostrarProductos() {
-        for (Component producto : productos) {
-            System.out.println(" -> " + producto.getDescripcion() + " - Precio final " + FormatoMoneda.formatearCLP(producto.getPrecio()));
-        }
+    public List<Component> listarProductos() {
+        return Collections.unmodifiableList(productos);
     }
     
     public double calcularTotal() {
@@ -38,10 +37,6 @@ public class Carrito {
         return total;
     }
     
-    public List<Component> getProductos() {
-        return productos;
-    }
-
     @Override
     public String toString() {
         return "Carrito: " + productos.size() + " productos\nTotal: " + FormatoMoneda.formatearCLP(calcularTotal());

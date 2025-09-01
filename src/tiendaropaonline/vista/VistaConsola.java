@@ -104,7 +104,7 @@ public class VistaConsola {
             String entrada = scanner.nextLine().trim();
             int id = Integer.parseInt(entrada);
             for (Component producto : productos) {
-                if (producto.getId() == id) {
+                if (producto.getIdProducto() == id) {
                     controladorCarrito.ejecutarComando(new AgregarProducto(carrito, producto));
                 }
                 return;
@@ -122,7 +122,7 @@ public class VistaConsola {
             String entrada = scanner.nextLine().trim();
             int id = Integer.parseInt(entrada);
             for (Component producto : productos) {
-                if (producto.getId() == id) {
+                if (producto.getIdProducto() == id) {
                     controladorCarrito.ejecutarComando(new EliminarProducto(carrito, producto));
                 }
                 return;

@@ -5,8 +5,8 @@ import tiendaropaonline.modelo.carrito.Command;
 import tiendaropaonline.vista.VistaCarrito;
 
 public class ControladorCarrito {
-    private Carrito carrito;
-    private VistaCarrito vista;
+    private final Carrito carrito;
+    private final VistaCarrito vista;
 
     public ControladorCarrito(Carrito carrito, VistaCarrito vista) {
         this.carrito = carrito;
