@@ -7,12 +7,14 @@ public class Producto implements Component {
     private int idProducto;
     private String nombre;
     private double precio;
+    private final double precioOriginal;
     private String categoria;
 
     public Producto(int idProducto, String nombre, double precio, String categoria) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.precio = precio;
+        this.precioOriginal = precio;
         this.categoria = categoria;
     }
 
@@ -44,6 +46,11 @@ public class Producto implements Component {
     }
 
     @Override
+    public double getPrecioOriginal() {
+        return precioOriginal;
+    }
+
+    @Override
     public String getCategoria() {
         return categoria;
     }
@@ -54,6 +61,6 @@ public class Producto implements Component {
 
     @Override
     public String getDescripcion() {
-        return "Producto " + idProducto + ": " + nombre + " " + FormatoMoneda.formatearCLP(precio) + "(" + categoria + ")";
+        return "Producto " + idProducto + ": " + nombre + " - " + FormatoMoneda.CLP(precio) + " (" + categoria + ")";
     }
 }

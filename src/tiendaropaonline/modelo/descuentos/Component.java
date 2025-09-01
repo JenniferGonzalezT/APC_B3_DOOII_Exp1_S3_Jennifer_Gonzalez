@@ -10,5 +10,6 @@ public interface Component {
     String getNombre();
     String getCategoria();
     double getPrecio();
+    double getPrecioOriginal();
     String getDescripcion();
 }

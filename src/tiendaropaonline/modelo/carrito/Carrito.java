@@ -7,7 +7,7 @@ import tiendaropaonline.modelo.descuentos.Component;
 import tiendaropaonline.util.FormatoMoneda;
 
 /**
- * Receptor del patrón Command para agregar, eliminar y mostrar en el carrito.
+ * Receptor del patrón Command para agregar y eliminar productos del carrito.
  */
 
 public class Carrito {
@@ -39,6 +39,6 @@ public class Carrito {
     
     @Override
     public String toString() {
-        return "Carrito: " + productos.size() + " productos\nTotal: " + FormatoMoneda.formatearCLP(calcularTotal());
+        return "Carrito: " + productos.size() + " productos\nTotal: " + FormatoMoneda.CLP(calcularTotal());
     }
 }

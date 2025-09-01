@@ -6,10 +6,21 @@ import tiendaropaonline.util.FormatoMoneda;
 
 public class VistaCarrito {
     public void mostrarCarrito(Carrito carrito) {
-        System.out.println("\n===== CARRITO =====");
-        System.out.println(carrito);
-        for (Component producto : carrito.listarProductos()) {
-            System.out.println(" -> " + producto.getDescripcion() + " - Precio final " + FormatoMoneda.formatearCLP(producto.getPrecio()));
+        System.out.println("===============================================");
+        System.out.println("               CARRITO DE COMPRAS");
+        System.out.println("===============================================");
+        
+        if (carrito.listarProductos().isEmpty()) {
+            System.out.println("El carrito está vacío.");
+        } else {
+            System.out.println(carrito);
+            for (Component producto : carrito.listarProductos()) {
+            System.out.println(" -> " + producto.getDescripcion() + " - Precio final " + FormatoMoneda.CLP(producto.getPrecio()));
+            }
         }
+        
+        System.out.println("-----------------------------------------------");
+        System.out.println("Total: " + FormatoMoneda.CLP(carrito.calcularTotal()));
+        System.out.println("===============================================");
     }
 }

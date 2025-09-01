@@ -1,49 +1,37 @@
 package tiendaropaonline.modelo;
 
-import java.util.ArrayList;
-import java.util.List;
+import tiendaropaonline.modelo.carrito.Carrito;
 import tiendaropaonline.util.FormatoMoneda;
 
 public class Pedido {
-    private int idPedido;
-    private Usuario usuario;
-    private List<Producto> productos;
-    private double total;
+    private final int idPedido;
+    private final Usuario usuario;
+    private final Carrito carrito;
 
-    public Pedido(int idPedido, Usuario usuario) {
+    public Pedido(int idPedido, Usuario usuario, Carrito carrito) {
         this.idPedido = idPedido;
         this.usuario = usuario;
-        this.productos = new ArrayList<>();
-        this.total = 0;
+        this.carrito = carrito;
     }
-    
-    public void agregarProducto(Producto producto) {
-        productos.add(producto);
-        calcularTotal();
+
+    public int getIdPedido() {
+        return idPedido;
     }
-    
-    public void eliminarProducto(Producto producto) {
-        productos.remove(producto);
-        calcularTotal();
+
+    public Usuario getUsuario() {
+        return usuario;
     }
-    
-    private void calcularTotal() {
-        total = 0.0;
-        for (Producto producto : productos) {
-            total += producto.getPrecio();
-        }
+
+    public Carrito getCarrito() {
+        return carrito;
     }
     
     public double getTotal() {
-        return total;
-    }
-    
-    public List<Producto> getProductos() {
-        return productos;
+        return carrito.calcularTotal();
     }
 
     @Override
     public String toString() {
-        return "Pedido #" + idPedido + " a nombre de " + usuario.getNombre() + " - Total: $" + FormatoMoneda.formatearCLP(total);
+        return "Pedido #" + idPedido + " a nombre de " + usuario.getNombre() + " - Total: " + FormatoMoneda.CLP(getTotal());
     }
 }
