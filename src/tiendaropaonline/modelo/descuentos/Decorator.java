@@ -32,6 +32,11 @@ public abstract class Decorator implements Component {
     }
     
     @Override
+    public double getPrecioOriginal() {
+        return producto.getPrecioOriginal();
+    }
+    
+    @Override
     public String getDescripcion() {
         return producto.getDescripcion();
     }
