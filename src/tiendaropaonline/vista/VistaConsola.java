@@ -38,11 +38,10 @@ public class VistaConsola {
         System.out.println("(4) Ver carrito");
         System.out.println("(5) Confirmar pedido");
         System.out.println("(6) Ver detalle producto");
-        System.out.println("(7) Ver descuento de un producto");
         System.out.println("(0) Salir");
         
         final int OPCION_MIN = 0;
-        final int OPCION_MAX = 7;
+        final int OPCION_MAX = 6;
         
         int opcion = 0;
         boolean opcionValida = false;
@@ -170,7 +169,11 @@ public class VistaConsola {
     
     private void detalleProducto() {
         Component producto = seleccionarProducto(productos);
-        ControladorProducto controlador = new ControladorProducto(producto, new VistaProducto());
-        controlador.actualizarVista();
+        if (producto != null) {
+            ControladorProducto controlador = new ControladorProducto(producto, new VistaProducto());
+            controlador.actualizarVista();
+        } else {
+            System.out.println("Producto no encontrado.");
+        }
     }
 }
