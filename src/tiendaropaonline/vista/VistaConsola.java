@@ -158,6 +158,7 @@ public class VistaConsola {
         controlador.actualizarVista();
         
         // Limpieza del carrito
-        controladorCarrito.setCarrito();
+        carrito = new Carrito();
+        controladorCarrito.setCarrito(carrito);
     }
 }

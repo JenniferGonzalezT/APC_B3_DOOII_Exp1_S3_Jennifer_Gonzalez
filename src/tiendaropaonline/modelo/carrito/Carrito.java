@@ -23,7 +23,7 @@ public class Carrito {
     }
     
     public void eliminarProducto(Component producto) {
-        productos.remove(producto);
+        productos.removeIf(p -> p.getIdProducto() == producto.getIdProducto());
     }
     
     public List<Component> listarProductos() {

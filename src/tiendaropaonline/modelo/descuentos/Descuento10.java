@@ -16,6 +16,6 @@ public class Descuento10 extends Decorator {
     
     @Override
     public String getDescripcion() {
-        return super.getDescripcion() + " (Con Descuento 10%)";
+        return super.getDescripcion() + " (Con Descuento 10% general)";
     }
 }

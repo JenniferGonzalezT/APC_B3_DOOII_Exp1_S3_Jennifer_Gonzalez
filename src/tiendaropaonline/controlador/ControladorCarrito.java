@@ -13,8 +13,8 @@ public class ControladorCarrito {
         this.vista = vista;
     }
 
-    public void setCarrito() {
-        this.carrito = new Carrito();
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
     }
     
     public void ejecutarComando(Command comando) {
