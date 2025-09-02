@@ -12,7 +12,7 @@ public class VistaPedido {
         System.out.println("-----------------------------------------------");
         System.out.println("Productos:");
         for (Component producto : pedido.getCarrito().listarProductos()) {
-            System.out.println("-> " + producto.getDescripcion());
+            System.out.println("-> " + producto.getDescripcion() + " - Precio final " + FormatoMoneda.CLP(producto.getPrecio()));
         }
         System.out.println("-----------------------------------------------");
         System.out.println("Total: " + FormatoMoneda.CLP(pedido.getTotal()));

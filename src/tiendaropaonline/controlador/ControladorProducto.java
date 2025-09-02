@@ -1,13 +1,13 @@
 package tiendaropaonline.controlador;
 
-import tiendaropaonline.modelo.Producto;
+import tiendaropaonline.modelo.descuentos.Component;
 import tiendaropaonline.vista.VistaProducto;
 
 public class ControladorProducto {
-    private final Producto producto;
+    private final Component producto;
     private final VistaProducto vista;
 
-    public ControladorProducto(Producto producto, VistaProducto vista) {
+    public ControladorProducto(Component producto, VistaProducto vista) {
         this.producto = producto;
         this.vista = vista;
     }

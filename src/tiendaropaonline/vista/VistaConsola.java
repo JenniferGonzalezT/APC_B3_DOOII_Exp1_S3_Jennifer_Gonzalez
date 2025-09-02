@@ -11,11 +11,11 @@ import tiendaropaonline.modelo.descuentos.*;
 
 public class VistaConsola {
     private final Scanner scanner;
+    private final Usuario usuario;
+    private final List<Component> productos;
     private Carrito carrito;
     private final VistaCarrito vistaCarrito;
     private final ControladorCarrito controladorCarrito;
-    private final Usuario usuario;
-    private final List<Component> productos;
 
     public VistaConsola(Usuario usuario, List<Component> productos) {
         this.scanner = new Scanner(System.in);
@@ -37,10 +37,12 @@ public class VistaConsola {
         System.out.println("(3) Eliminar producto del carrito");
         System.out.println("(4) Ver carrito");
         System.out.println("(5) Confirmar pedido");
+        System.out.println("(6) Ver detalle producto");
+        System.out.println("(7) Ver descuento de un producto");
         System.out.println("(0) Salir");
         
         final int OPCION_MIN = 0;
-        final int OPCION_MAX = 5;
+        final int OPCION_MAX = 7;
         
         int opcion = 0;
         boolean opcionValida = false;
@@ -86,6 +88,13 @@ public class VistaConsola {
                     break;
                 case 5:
                     confirmarPedido();
+                    break;
+                case 6:
+                    detalleProducto();
+                    break;
+                case 7:
+                    detalleDescuento();
+                    break;
             }
         } while (opcion != 0);
     }
@@ -158,7 +167,19 @@ public class VistaConsola {
         controlador.actualizarVista();
         
         // Limpieza del carrito
-        carrito = new Carrito();
-        controladorCarrito.setCarrito(carrito);
+        //carrito = new Carrito();
+        controladorCarrito.setCarrito(new Carrito());
+    }
+    
+    private void detalleProducto() {
+        Component producto = seleccionarProducto(productos);
+        ControladorProducto controlador = new ControladorProducto(producto, new VistaProducto());
+        controlador.actualizarVista();
+    }
+    
+    private void detalleDescuento() {
+        Component producto = seleccionarProducto(productos);
+        ControladorDescuento controlador = new ControladorDescuento(producto, new VistaDescuento());
+        controlador.actualizarVista();
     }
 }
