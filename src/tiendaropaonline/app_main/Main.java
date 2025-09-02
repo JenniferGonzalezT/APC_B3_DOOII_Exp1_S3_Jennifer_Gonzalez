@@ -26,8 +26,9 @@ public class Main {
         productos.add(new Producto(1, "Polera", 15000, "Ropa"));
         productos.add(new Producto(2,"Jeans", 25000, "Ropa"));
         productos.add(new Producto(3,"Zapatos", 30000, "Calzado"));
+        productos.add(new Producto(4,"Gorro", 7000, "Accesorios"));
         
-        // Inicializacion del sistema
+        // Inicializacion del sistema con la vista de consola
         VistaConsola vistaConsola = new VistaConsola(user1, productos);
         vistaConsola.saludo();
         vistaConsola.opcionMenu();

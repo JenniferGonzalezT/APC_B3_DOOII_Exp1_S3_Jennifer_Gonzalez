@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import tiendaropaonline.modelo.descuentos.Component;
+import tiendaropaonline.modelo.descuentos.DiscountManager;
 import tiendaropaonline.util.FormatoMoneda;
 
 /**
@@ -26,12 +27,18 @@ public class Carrito {
     }
     
     public List<Component> listarProductos() {
-        return Collections.unmodifiableList(productos);
+        List<Component> productosConDescuento = new ArrayList<>();
+        for (Component producto : productos) {
+            producto = DiscountManager.getInstance().aplicarDescuento10(producto);
+            producto = DiscountManager.getInstance().aplicarDescuentoCategoriaRopa(producto);
+            productosConDescuento.add(producto);
+        }
+        return Collections.unmodifiableList(productosConDescuento);
     }
     
     public double calcularTotal() {
         double total = 0;
-        for (Component producto : productos) {
+        for (Component producto : listarProductos()) {
             total += producto.getPrecio();
         }
         return total;

@@ -119,9 +119,6 @@ public class VistaConsola {
         System.out.println("\n========= AGREGAR PRODUCTO AL CARRITO =========");
         Component producto = seleccionarProducto(productos);
         if (producto != null) {
-            producto = DiscountManager.getInstance().aplicarDescuento10(producto);
-            producto = DiscountManager.getInstance().aplicarDescuentoCategoriaRopa(producto);
-            
             controladorCarrito.ejecutarComando(new AgregarProducto(carrito, producto));
             System.out.println("Producto agregado al carrito -> " + producto.getDescripcion());
         } else {
