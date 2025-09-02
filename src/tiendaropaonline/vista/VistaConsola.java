@@ -92,9 +92,6 @@ public class VistaConsola {
                 case 6:
                     detalleProducto();
                     break;
-                case 7:
-                    detalleDescuento();
-                    break;
             }
         } while (opcion != 0);
     }
@@ -167,19 +164,13 @@ public class VistaConsola {
         controlador.actualizarVista();
         
         // Limpieza del carrito
-        //carrito = new Carrito();
-        controladorCarrito.setCarrito(new Carrito());
+        carrito = new Carrito();
+        controladorCarrito.setCarrito(carrito);
     }
     
     private void detalleProducto() {
         Component producto = seleccionarProducto(productos);
         ControladorProducto controlador = new ControladorProducto(producto, new VistaProducto());
-        controlador.actualizarVista();
-    }
-    
-    private void detalleDescuento() {
-        Component producto = seleccionarProducto(productos);
-        ControladorDescuento controlador = new ControladorDescuento(producto, new VistaDescuento());
         controlador.actualizarVista();
     }
 }
