@@ -19,6 +19,9 @@ public class DescuentoCategoriaRopa extends Decorator {
     
     @Override
     public String getDescripcion() {
-        return super.getDescripcion() + " (Con Descuento 20% por categoría Ropa)";
+        if (producto.getCategoria().equalsIgnoreCase("Ropa")) {
+            return super.getDescripcion() + " (Con Descuento 20% por categoría Ropa)";
+        }
+        return super.getDescripcion();
     }
 }

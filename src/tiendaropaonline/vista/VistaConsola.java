@@ -123,7 +123,7 @@ public class VistaConsola {
             producto = DiscountManager.getInstance().aplicarDescuentoCategoriaRopa(producto);
             
             controladorCarrito.ejecutarComando(new AgregarProducto(carrito, producto));
-            System.out.println("Producto agregado al carrito: " + producto.getDescripcion());
+            System.out.println("Producto agregado al carrito -> " + producto.getDescripcion());
         } else {
             System.out.println("Producto no encontrado.");
         }
@@ -139,7 +139,7 @@ public class VistaConsola {
         Component producto = seleccionarProducto(carrito.listarProductos());
         if (producto != null) {
             controladorCarrito.ejecutarComando(new EliminarProducto(carrito, producto));
-            System.out.println("Producto eliminado del carrito: " + producto.getDescripcion());
+            System.out.println("Producto eliminado del carrito -> " + producto.getDescripcion());
         } else {
             System.out.println("Producto no encontrado.");
         }
@@ -150,11 +150,17 @@ public class VistaConsola {
     }
     
     private void confirmarPedido() {
+        System.out.println("\n=============== CONFIRMAR PEDIDO ==============");
+        if (carrito.listarProductos().isEmpty()) {
+            System.out.println("Aún no tiene productos en el carrito.");
+            return;
+        }
+        
         Pedido pedido = new Pedido(usuario, carrito);
         ControladorPedido controlador = new ControladorPedido(pedido, new VistaPedido());
         controlador.actualizarVista();
         
         // Limpieza del carrito
-        controladorCarrito.setCarrito(new Carrito());
+        controladorCarrito.setCarrito();
     }
 }

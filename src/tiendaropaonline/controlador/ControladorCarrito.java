@@ -6,19 +6,15 @@ import tiendaropaonline.vista.VistaCarrito;
 
 public class ControladorCarrito {
     private Carrito carrito;
-    private VistaCarrito vista;
+    private final VistaCarrito vista;
 
     public ControladorCarrito(Carrito carrito, VistaCarrito vista) {
         this.carrito = carrito;
         this.vista = vista;
     }
 
-    public void setCarrito(Carrito carrito) {
-        this.carrito = carrito;
-    }
-
-    public void setVista(VistaCarrito vista) {
-        this.vista = vista;
+    public void setCarrito() {
+        this.carrito = new Carrito();
     }
     
     public void ejecutarComando(Command comando) {
@@ -28,5 +24,4 @@ public class ControladorCarrito {
     public void actualizarVista() {
         vista.mostrarCarrito(carrito);
     }
-    
 }

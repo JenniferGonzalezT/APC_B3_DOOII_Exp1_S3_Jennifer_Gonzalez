@@ -61,6 +61,6 @@ public class Producto implements Component {
 
     @Override
     public String getDescripcion() {
-        return "Producto " + idProducto + ": " + nombre + " - Precio original " + FormatoMoneda.CLP(precioOriginal) + ", Precio final " + FormatoMoneda.CLP(precio) +  " (" + categoria + ")";
+        return "Producto " + idProducto + ": " + nombre + " - " + FormatoMoneda.CLP(precio) +  " (" + categoria + ")";
     }
 }

@@ -16,8 +16,5 @@ public class VistaCarrito {
             System.out.println(" -> " + producto.getDescripcion() + " - Precio final " + FormatoMoneda.CLP(producto.getPrecio()));
             }
         }
-        
-        System.out.println("-----------------------------------------------");
-        System.out.println("Total: " + FormatoMoneda.CLP(carrito.calcularTotal()));
     }
 }
