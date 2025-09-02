@@ -4,12 +4,14 @@ import tiendaropaonline.modelo.carrito.Carrito;
 import tiendaropaonline.util.FormatoMoneda;
 
 public class Pedido {
+    private static int generadorId = 0;
+    
     private final int idPedido;
     private final Usuario usuario;
     private final Carrito carrito;
 
-    public Pedido(int idPedido, Usuario usuario, Carrito carrito) {
-        this.idPedido = idPedido;
+    public Pedido(Usuario usuario, Carrito carrito) {
+        this.idPedido = ++generadorId;
         this.usuario = usuario;
         this.carrito = carrito;
     }

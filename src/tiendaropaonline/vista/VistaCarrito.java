@@ -6,9 +6,7 @@ import tiendaropaonline.util.FormatoMoneda;
 
 public class VistaCarrito {
     public void mostrarCarrito(Carrito carrito) {
-        System.out.println("===============================================");
-        System.out.println("               CARRITO DE COMPRAS");
-        System.out.println("===============================================");
+        System.out.println("\n============= CARRITO DE COMPRAS ==============");
         
         if (carrito.listarProductos().isEmpty()) {
             System.out.println("El carrito está vacío.");
@@ -21,6 +19,5 @@ public class VistaCarrito {
         
         System.out.println("-----------------------------------------------");
         System.out.println("Total: " + FormatoMoneda.CLP(carrito.calcularTotal()));
-        System.out.println("===============================================");
     }
 }

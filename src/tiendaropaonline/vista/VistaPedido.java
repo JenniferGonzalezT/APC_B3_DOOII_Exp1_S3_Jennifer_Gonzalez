@@ -6,9 +6,7 @@ import tiendaropaonline.util.FormatoMoneda;
 
 public class VistaPedido {
     public void mostrarPedido(Pedido pedido) {
-        System.out.println("===============================================");
-        System.out.println("              RESUMEN DEL PEDIDO");
-        System.out.println("===============================================");
+        System.out.println("\n============= RESUMEN DEL PEDIDO ==============");
         System.out.println("ID del pedido: " + pedido.getIdPedido());
         System.out.println("Cliente: " + pedido.getUsuario().getNombre());
         System.out.println("-----------------------------------------------");
@@ -18,6 +16,5 @@ public class VistaPedido {
         }
         System.out.println("-----------------------------------------------");
         System.out.println("Total: " + FormatoMoneda.CLP(pedido.getTotal()));
-        System.out.println("===============================================");
     }
 }

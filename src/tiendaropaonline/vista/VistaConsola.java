@@ -1,27 +1,29 @@
-
 package tiendaropaonline.vista;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import tiendaropaonline.controlador.ControladorCarrito;
-import tiendaropaonline.modelo.Producto;
-import tiendaropaonline.modelo.carrito.AgregarProducto;
-import tiendaropaonline.modelo.carrito.Carrito;
-import tiendaropaonline.modelo.carrito.EliminarProducto;
-import tiendaropaonline.modelo.descuentos.Component;
+import tiendaropaonline.controlador.*;
+import tiendaropaonline.modelo.Pedido;
+import tiendaropaonline.modelo.Usuario;
+import tiendaropaonline.modelo.carrito.*;
+import tiendaropaonline.modelo.descuentos.*;
 
 public class VistaConsola {
-    private final Scanner scanner = new Scanner(System.in);
-    private List<Component> productos;
+    private final Scanner scanner;
     private Carrito carrito;
-    private ControladorCarrito controladorCarrito;
-    private VistaCarrito vistaCarrito;
+    private final VistaCarrito vistaCarrito;
+    private final ControladorCarrito controladorCarrito;
+    private final Usuario usuario;
+    private final List<Component> productos;
 
-    public VistaConsola(List<Component> productos, Carrito carrito, ControladorCarrito controladorCarrito, VistaCarrito vistaCarrito) {
-        this.productos = productos;
-        this.carrito = carrito;
-        this.controladorCarrito = controladorCarrito;
-        this.vistaCarrito = vistaCarrito;
+    public VistaConsola(Usuario usuario, List<Component> productos) {
+        this.scanner = new Scanner(System.in);
+        this.carrito = new Carrito();
+        this.vistaCarrito = new VistaCarrito();
+        this.controladorCarrito = new ControladorCarrito(carrito, vistaCarrito);
+        this.usuario = usuario;
+        this.productos = new ArrayList<>(productos);
     }
     
     public void saludo() {
@@ -29,14 +31,14 @@ public class VistaConsola {
     }
     
     public int mostrarMenu() {
-        System.out.println("\n===== MENÚ =====");
-        System.out.println("(1) Ver productos");
+        System.out.println("\n===================== MENÚ ====================");
+        System.out.println("(1) Mostrar productos");
         System.out.println("(2) Agregar producto al carrito");
         System.out.println("(3) Eliminar producto del carrito");
         System.out.println("(4) Ver carrito");
-        System.out.println("(5) Aplicar descuento");
+        System.out.println("(5) Confirmar pedido");
         System.out.println("(0) Salir");
-
+        
         final int OPCION_MIN = 0;
         final int OPCION_MAX = 5;
         
@@ -67,7 +69,7 @@ public class VistaConsola {
             opcion = mostrarMenu();
             switch (opcion) {
                 case 0:
-                    System.out.println("\n===== SALIR =====");
+                    System.out.println("\n==================== SALIR ====================");
                     System.out.println("Saliendo...\n¡Muchas gracias por su visita!");
                     break;
                 case 1:
@@ -80,60 +82,79 @@ public class VistaConsola {
                     eliminarProducto();
                     break;
                 case 4:
-                    controladorCarrito.actualizarVista();
+                    verCarrito();
                     break;
                 case 5:
-                    aplicarDescuento();
-                    break;
+                    confirmarPedido();
             }
         } while (opcion != 0);
-        scanner.close();
     }
     
     private void mostrarProductos() {
-        System.out.println("\n===== PRODUCTOS =====");
+        System.out.println("\n================== PRODUCTOS ==================");
         for (Component producto : productos) {
             System.out.println(producto.getDescripcion());
         }
     }
     
-    private void agregarProducto() {
-        System.out.println("\n===== AGREGAR PRODUCTO AL CARRITO =====");
-        System.out.print("Ingrese el ID del producto que desea agregar: ");
-        try {
-            String entrada = scanner.nextLine().trim();
-            int id = Integer.parseInt(entrada);
-            for (Component producto : productos) {
-                if (producto.getIdProducto() == id) {
-                    controladorCarrito.ejecutarComando(new AgregarProducto(carrito, producto));
+    private Component seleccionarProducto(List<Component> lista) {
+        while (true) {
+            System.out.print("Ingrese el ID del producto: ");
+            try {
+                String entrada = scanner.nextLine().trim();
+                int id = Integer.parseInt(entrada);
+                for (Component producto : lista) {
+                    if (id == producto.getIdProducto()) {
+                        return producto;
+                    }
                 }
-                return;
+                return null;
+            } catch (NumberFormatException e) {
+                System.out.println("La entrada ingresada no es válida.");
             }
-        } catch (NumberFormatException e) {
-            System.out.println("La entrada no es válida.");
         }
-        System.out.println("Producto no encontrado.");
+    }
+    
+    private void agregarProducto() {
+        System.out.println("\n========= AGREGAR PRODUCTO AL CARRITO =========");
+        Component producto = seleccionarProducto(productos);
+        if (producto != null) {
+            producto = DiscountManager.getInstance().aplicarDescuento10(producto);
+            producto = DiscountManager.getInstance().aplicarDescuentoCategoriaRopa(producto);
+            
+            controladorCarrito.ejecutarComando(new AgregarProducto(carrito, producto));
+            System.out.println("Producto agregado al carrito: " + producto.getDescripcion());
+        } else {
+            System.out.println("Producto no encontrado.");
+        }
     }
     
     private void eliminarProducto() {
-        System.out.println("\n===== ELIMINAR PRODUCTO DEL CARRITO =====");
-        System.out.print("Ingrese el ID del producto que desea eliminar: ");
-        try {
-            String entrada = scanner.nextLine().trim();
-            int id = Integer.parseInt(entrada);
-            for (Component producto : productos) {
-                if (producto.getIdProducto() == id) {
-                    controladorCarrito.ejecutarComando(new EliminarProducto(carrito, producto));
-                }
-                return;
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("La entrada no es válida.");
+        System.out.println("\n======== ELIMINAR PRODUCTO DEL CARRITO ========");
+        if (carrito.listarProductos().isEmpty()) {
+            System.out.println("Aún no tiene productos en el carrito.");
+            return;
         }
-        System.out.println("Producto no encontrado.");
+        
+        Component producto = seleccionarProducto(carrito.listarProductos());
+        if (producto != null) {
+            controladorCarrito.ejecutarComando(new EliminarProducto(carrito, producto));
+            System.out.println("Producto eliminado del carrito: " + producto.getDescripcion());
+        } else {
+            System.out.println("Producto no encontrado.");
+        }
     }
     
-    private void aplicarDescuento() {
-        System.out.println("Descuentoo");
+    private void verCarrito() {
+        controladorCarrito.actualizarVista();
+    }
+    
+    private void confirmarPedido() {
+        Pedido pedido = new Pedido(usuario, carrito);
+        ControladorPedido controlador = new ControladorPedido(pedido, new VistaPedido());
+        controlador.actualizarVista();
+        
+        // Limpieza del carrito
+        controladorCarrito.setCarrito(new Carrito());
     }
 }

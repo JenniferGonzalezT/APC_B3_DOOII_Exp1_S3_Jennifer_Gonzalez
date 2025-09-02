@@ -2,11 +2,9 @@ package tiendaropaonline.app_main;
 
 import java.util.ArrayList;
 import java.util.List;
-import tiendaropaonline.controlador.ControladorCarrito;
 import tiendaropaonline.modelo.Producto;
-import tiendaropaonline.modelo.carrito.Carrito;
+import tiendaropaonline.modelo.Usuario;
 import tiendaropaonline.modelo.descuentos.Component;
-import tiendaropaonline.vista.VistaCarrito;
 import tiendaropaonline.vista.VistaConsola;
 
 /**
@@ -20,8 +18,8 @@ import tiendaropaonline.vista.VistaConsola;
 public class Main {
 
     public static void main(String[] args) {
-        // Usuarios de prueba
-        
+        // Usuario de prueba
+        Usuario user1 = new Usuario(1,"Ana","ana@email.com");
         
         // Productos de prueba
         List<Component> productos = new ArrayList<>();
@@ -29,16 +27,10 @@ public class Main {
         productos.add(new Producto(2,"Jeans", 25000, "Ropa"));
         productos.add(new Producto(3,"Zapatos", 30000, "Calzado"));
         
-        // Carrito
-        Carrito carrito = new Carrito();
-        VistaCarrito vistaCarrito = new VistaCarrito();
-        ControladorCarrito controladorCarrito = new ControladorCarrito(carrito, vistaCarrito);
-        
-        // Menú
-        VistaConsola vistaConsola = new VistaConsola(productos, carrito, controladorCarrito, vistaCarrito);
+        // Inicializacion del sistema
+        VistaConsola vistaConsola = new VistaConsola(user1, productos);
         vistaConsola.saludo();
         vistaConsola.opcionMenu();
-        
     }
     
 }
